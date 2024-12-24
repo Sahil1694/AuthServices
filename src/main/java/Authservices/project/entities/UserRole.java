@@ -1,4 +1,4 @@
-package entities;
+package Authservices.project.entities;
 
 
 import jakarta.persistence.*;

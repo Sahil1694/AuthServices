@@ -1,4 +1,4 @@
-package service;
+package Authservices.project.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -46,6 +46,8 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
+
+    //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

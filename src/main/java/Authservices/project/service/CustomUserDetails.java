@@ -1,8 +1,8 @@
-package service;
+package Authservices.project.service;
 
 
-import entities.UserInfo;
-import entities.UserRole;
+import Authservices.project.entities.UserInfo;
+import Authservices.project.entities.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

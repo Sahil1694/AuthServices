@@ -1,4 +1,4 @@
-package entities;
+package Authservices.project.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class UserInfo {
 
     @Id
-    @Column
+    @Column(name = "user_id")
     private String userId;
 
     private String username;
