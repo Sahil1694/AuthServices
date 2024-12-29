@@ -2,6 +2,7 @@ package Authservices.project.service;
 
 import Authservices.project.Utils.ValidationUtil;
 import Authservices.project.entities.UserInfo;
+import Authservices.project.eventProducer.UserInfoProducer;
 import Authservices.project.model.UserInfoDto;
 import Authservices.project.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private final PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    private final UserInfoProducer userInfoProducer;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -54,6 +59,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
        String userId = UUID.randomUUID().toString();
        userRepository.save(new UserInfo(userId, userInfoDto.getUsername(), userInfoDto.getPassword(),
                       new HashSet<>()));
+
+       // Send user data to Kafka
+        userInfoProducer.sendEventToKafka(userInfoDto);
        return true;
     }
 }
