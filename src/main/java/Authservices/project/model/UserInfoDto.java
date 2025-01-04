@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class UserInfoDto extends UserInfo {
 
 
-    private String userName;
+    private String firstName;
 
     private String lastName;
 

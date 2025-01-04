@@ -1,6 +1,7 @@
 package Authservices.project.auth;
 
 
+import Authservices.project.eventProducer.UserInfoProducer;
 import Authservices.project.repository.UserRepository;
 import Authservices.project.service.UserDetailsServiceImpl;
 import lombok.Data;
@@ -33,9 +34,13 @@ public class SecurityConfig {
     @Autowired
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
+    @Autowired
+    private UserInfoProducer userInfoProducer;
+
+
     @Bean
     public UserDetailsService useDetailsService(UserRepository userRepository , PasswordEncoder passwordEncoder){
-        return new UserDetailsServiceImpl(userRepository, passwordEncoder);
+        return new UserDetailsServiceImpl(userRepository, passwordEncoder, userInfoProducer);
     }
 
     @Bean
